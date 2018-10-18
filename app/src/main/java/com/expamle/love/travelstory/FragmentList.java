@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentList {
+
     public List<Fragment> frgmentList(){
         List<Fragment> myFragments=new ArrayList<>();
         myFragments.add(new HomeFragment());
-        myFragments.add(new LikeFragment());
         myFragments.add(new RecommendFragment());
         myFragments.add(new SearchFragment());
+        myFragments.add(new LikeFragment());
         myFragments.add(new UserFragment());
         return myFragments;
     }

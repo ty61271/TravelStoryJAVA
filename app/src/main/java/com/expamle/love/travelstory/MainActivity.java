@@ -74,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(position==HOME_POSISION){
-                }else {
-                }
                     navigation.getMenu().getItem(position).setChecked(true);
 
             }
