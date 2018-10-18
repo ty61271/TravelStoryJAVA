@@ -19,14 +19,18 @@ public class UserFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_user, container, false);
-
     }
-
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        findSuggestionView();
+
+    }
+
+    private void findSuggestionView() {
+//        找意見回饋的按鈕轉到意見回饋頁面
         Button suggestion = getActivity().findViewById(R.id.bt_suggestion);
         suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +39,6 @@ public class UserFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
 }
 
