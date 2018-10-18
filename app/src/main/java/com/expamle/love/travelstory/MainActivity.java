@@ -1,5 +1,6 @@
 package com.expamle.love.travelstory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,12 @@ import android.view.MenuItem;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int HOME_POSISION = 0;
+    private static final int RECOMMEND_POSISION = 1;
+    private static final int SEARCH_POSISION = 2;
+    private static final int LIKE_POSISION = 3;
+    private static final int USER_POSISION = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +47,19 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home:
-                        viewPager.setCurrentItem(0);
+                        viewPager.setCurrentItem(HOME_POSISION);
                         return true;
                     case R.id.navigation_recommend:
-                        viewPager.setCurrentItem(1);
+                        viewPager.setCurrentItem(RECOMMEND_POSISION);
                         return true;
                     case R.id.navigation_search:
-                        viewPager.setCurrentItem(2);
+                        viewPager.setCurrentItem(SEARCH_POSISION);
                         return true;
                     case R.id.navigation_like:
-                        viewPager.setCurrentItem(3);
+                        viewPager.setCurrentItem(LIKE_POSISION);
                         return true;
                     case R.id.navigation_user:
-                        viewPager.setCurrentItem(4);
+                        viewPager.setCurrentItem(USER_POSISION);
                         return true;
                 }
                 return false;
@@ -67,7 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                navigation.getMenu().getItem(position).setChecked(true);
+                if(position==HOME_POSISION){
+                }else {
+                }
+                    navigation.getMenu().getItem(position).setChecked(true);
+
             }
 
             @Override
