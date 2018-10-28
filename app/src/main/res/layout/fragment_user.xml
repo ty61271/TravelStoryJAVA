@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:text="每個人都有屬於各自的故事，我有酒，你有故事麻?"
         app:layout_constraintEnd_toEndOf="parent"

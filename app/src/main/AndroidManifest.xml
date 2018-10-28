@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SuggestionActivity" />
-        <activity android:name=".CityActivity"></activity>
     </application>
 
 </manifest>
