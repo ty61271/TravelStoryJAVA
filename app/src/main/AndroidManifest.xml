@@ -14,7 +14,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SuggestionActivity" />
-    </application>
+        <activity android:name=".CityActivity"
+            android:theme="@style/AppTheme.Immersive"
+            android:label="你好">
 
+        </activity>
+    </application>
 </manifest>

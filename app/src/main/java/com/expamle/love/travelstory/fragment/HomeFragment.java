@@ -1,23 +1,29 @@
 package com.expamle.love.travelstory.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-//import com.expamle.love.travelstory.CityActivity;
+import com.expamle.love.travelstory.CityActivity;
 import com.expamle.love.travelstory.R;
 import com.expamle.love.travelstory.hotCity.HotCity;
 
@@ -30,10 +36,18 @@ public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private List<HotCity> hotCities;
+    private Toolbar toolbar;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_home, container, false);
 
     }
@@ -42,32 +56,14 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         findViews();
-//        list資料
+//      list資料
         hotCities = getCityList();
         HomeAdater adater = new HomeAdater();
         recyclerView.setAdapter(adater);
-        setToolbar();
-    }
-    private void setToolbar() {
-        // Set the padding to match the Status Bar height
-        AppBarLayout appBarLayout=getActivity().findViewById(R.id.homeappbar);
-        appBarLayout.setPadding(0, getStatusBarHeight(), 0, 0);
+
     }
 
-    /**
-     *
-     * @return height of status bar
-     */
-    private int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources()
-                .getIdentifier("status_bar_height", "dimen", "android");
 
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
 
     //      綁定
     private void findViews() {
@@ -94,7 +90,7 @@ public class HomeFragment extends Fragment {
             homeHolder.hotCityView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    startActivity(new Intent(getActivity(), CityActivity.class));
+                    startActivity(new Intent(getActivity(), CityActivity.class));
                 }
             });
         }
