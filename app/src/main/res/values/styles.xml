@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+    
+    <style name="Widget.Travel.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorText</item>
+    </style>
 
 
 
