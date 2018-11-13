@@ -22,27 +22,6 @@ public class LikeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setToolbar();
-    }
-    private void setToolbar() {
-        // Set the padding to match the Status Bar height
-        AppBarLayout appBarLayout=getActivity().findViewById(R.id.likeappbar);
-        appBarLayout.setPadding(0, getStatusBarHeight(), 0, 0);
-    }
-
-    /**
-     *
-     * @return height of status bar
-     */
-    private int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources()
-                .getIdentifier("status_bar_height", "dimen", "android");
-
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
     }
 
 }
