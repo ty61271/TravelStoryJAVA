@@ -2,11 +2,14 @@ package com.expamle.love.travelstory.hotCity;
 
 public class HotCity {
     private String cityName;
+    private String address;
     private int cityPicture;
 
-    public HotCity(String cityName, int cityPicture) {
+
+    public HotCity(String cityName, int cityPicture,String address) {
         this.cityName = cityName;
         this.cityPicture = cityPicture;
+        this.address=address;
     }
 
     public String getCityName() {
@@ -23,5 +26,13 @@ public class HotCity {
 
     public void setCityPicture(int cityPicture) {
         this.cityPicture = cityPicture;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

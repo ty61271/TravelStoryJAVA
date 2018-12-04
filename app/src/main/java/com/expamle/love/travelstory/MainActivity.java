@@ -1,8 +1,5 @@
 package com.expamle.love.travelstory;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,20 +9,16 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toolbar;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int HOME_POSISION = 0;
-    private static final int RECOMMEND_POSISION = 1;
-    private static final int SEARCH_POSISION = 2;
-    private static final int LIKE_POSISION = 3;
-    private static final int USER_POSISION = 4;
+    private static final int HOME_POSITION = 0;
+    private static final int NEARBY_POSITION = 1;
+    private static final int RECOMMEND_POSITION = 2;
+    private static final int LIKE_POSITION = 3;
+    private static final int USER_POSITION = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +47,28 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home:
-                        viewPager.setCurrentItem(HOME_POSISION);
+                        viewPager.setCurrentItem(HOME_POSITION);
                         return true;
                     case R.id.navigation_recommend:
-                        viewPager.setCurrentItem(RECOMMEND_POSISION);
+                        viewPager.setCurrentItem(NEARBY_POSITION);
                         return true;
                     case R.id.navigation_search:
-                        viewPager.setCurrentItem(SEARCH_POSISION);
+                        viewPager.setCurrentItem(RECOMMEND_POSITION);
                         return true;
                     case R.id.navigation_like:
-                        viewPager.setCurrentItem(LIKE_POSISION);
+                        viewPager.setCurrentItem(LIKE_POSITION);
                         return true;
                     case R.id.navigation_user:
-                        viewPager.setCurrentItem(USER_POSISION);
+                        viewPager.setCurrentItem(USER_POSITION);
                         return true;
                 }
                 return false;
             }
         });
+
+        viewPager.setPageTransformer(true, new ZoomOutTransformation());
+
+
 //        改變ViewPager navigation跟著改變
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

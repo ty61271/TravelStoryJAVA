@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/button5"
+        style="@style/Widget.Travel.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="台灣"
+        android:textAppearance="@style/Widget.Travel.HeadLine"
+        />
+
+    <android.support.design.button.MaterialButton
+        android:textAppearance="@style/Widget.Travel.HeadLine"
+        style="@style/Widget.Travel.TextButton"
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日本" />
+
+    <android.support.design.button.MaterialButton
+        android:textAppearance="@style/Widget.Travel.HeadLine"
+        style="@style/Widget.Travel.TextButton"
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="韓國" />
+
+    <android.support.design.button.MaterialButton
+        android:textAppearance="@style/Widget.Travel.HeadLine"
+        style="@style/Widget.Travel.TextButton"
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="泰國" />
+
+    <android.support.design.button.MaterialButton
+        android:textAppearance="@style/Widget.Travel.HeadLine"
+        style="@style/Widget.Travel.TextButton"
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大陸" />
+</merge>
