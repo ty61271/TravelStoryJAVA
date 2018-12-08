@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "564756805165",
+    "firebase_url": "https://travelstroy.firebaseio.com",
+    "project_id": "travelstroy",
+    "storage_bucket": "travelstroy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564756805165:android:f38e4acdda1c3cbb",
+        "android_client_info": {
+          "package_name": "com.expamle.love.travelstory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564756805165-6kve5gihjroh0s2rfpl42uoub5rmvd4k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.expamle.love.travelstory",
+            "certificate_hash": "31424e35aa31c21ef2db98a3c1029aabf3149a99"
+          }
+        },
+        {
+          "client_id": "564756805165-lud255lt426j06a1mnqe8g37vcpigggq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxRIGUzjVWiRH5Ml5XLjJr5mS8KFlsutM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564756805165-lud255lt426j06a1mnqe8g37vcpigggq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
