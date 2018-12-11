@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int RECOMMEND_POSITION = 2;
     private static final int LIKE_POSITION = 3;
     private static final int USER_POSITION = 4;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private FragmentManager fragmentManager;
+    private Fragment temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 //        元件
         final BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        final ViewPager viewPager = findViewById(R.id.viewPager);
 
 //        綁定
         FragmentList fragmentList = new FragmentList();
-        List<Fragment> myFragment = fragmentList.frgmentList();
-        FragmentAdater adater = new FragmentAdater(getSupportFragmentManager(), myFragment);
-        viewPager.setAdapter(adater);
+        final List<Fragment> myFragments = fragmentList.frgmentList();
+
+        firstFragment(myFragments);
+
 
 //        navigation 監聽器
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -47,67 +50,96 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home:
-                        viewPager.setCurrentItem(HOME_POSITION);
+                        switchFragment(myFragments.get(HOME_POSITION));
+                        return true;
+                    case R.id.navigation_nearby:
+                        switchFragment(myFragments.get(NEARBY_POSITION));
                         return true;
                     case R.id.navigation_recommend:
-                        viewPager.setCurrentItem(NEARBY_POSITION);
-                        return true;
-                    case R.id.navigation_search:
-                        viewPager.setCurrentItem(RECOMMEND_POSITION);
+                        switchFragment(myFragments.get(RECOMMEND_POSITION));
                         return true;
                     case R.id.navigation_like:
-                        viewPager.setCurrentItem(LIKE_POSITION);
+                        switchFragment(myFragments.get(LIKE_POSITION));
                         return true;
                     case R.id.navigation_user:
-                        viewPager.setCurrentItem(USER_POSITION);
+                        switchFragment(myFragments.get(USER_POSITION));
                         return true;
                 }
                 return false;
             }
         });
 
-        viewPager.setPageTransformer(true, new ZoomOutTransformation());
+//        viewPager.setPageTransformer(true, new ZoomOutTransformation());
 
 
 //        改變ViewPager navigation跟著改變
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int i, float v, int i1) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                    navigation.getMenu().getItem(position).setChecked(true);
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int i) {
+//
+//            }
+//        });
 
+    }
+
+
+
+    private void firstFragment(List<Fragment> myFragments) {
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment,myFragments.get(HOME_POSITION));
+        fragmentTransaction.commit();
+        temp = myFragments.get(HOME_POSITION);
+        Log.d(TAG, "firstFragment: "+myFragments.get(2));
+    }
+
+    private void switchFragment(Fragment fragment) {
+        if(temp!=fragment){
+            if(!fragment.isAdded()){
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.hide(temp);
+                fragmentTransaction.add(R.id.fragment,fragment);
+                fragmentTransaction.commit();
+            }else {
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.hide(temp);
+                fragmentTransaction.show(fragment);
+                fragmentTransaction.commit();
             }
-
-            @Override
-            public void onPageSelected(int position) {
-                    navigation.getMenu().getItem(position).setChecked(true);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
+            temp=fragment;
+        }
 
     }
 
     //    FragmentAdater
-    class FragmentAdater extends FragmentStatePagerAdapter {
-        private List<Fragment> myFragments;
-
-        public FragmentAdater(FragmentManager fm, List<Fragment> myFragments) {
-            super(fm);
-            this.myFragments = myFragments;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return myFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return myFragments.size();
-        }
-    }
+//    class FragmentAdater extends FragmentStatePagerAdapter {
+//        private List<Fragment> myFragments;
+//
+//        public FragmentAdater(FragmentManager fm, List<Fragment> myFragments) {
+//            super(fm);
+//            this.myFragments = myFragments;
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            return myFragments.get(position);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return myFragments.size();
+//        }
+//    }
 
 }
