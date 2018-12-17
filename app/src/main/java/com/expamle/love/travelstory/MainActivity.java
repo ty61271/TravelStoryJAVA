@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int RECOMMEND_POSITION = 2;
     private static final int LIKE_POSITION = 3;
     private static final int USER_POSITION = 4;
-    private static final String TAG = MainActivity.class.getSimpleName();
     private FragmentManager fragmentManager;
     private Fragment temp;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         findViews();
-
+        
     }
 
     private void findViews() {
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.navigation_home:
                         switchFragment(myFragments.get(HOME_POSITION));
                         return true;
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 //        viewPager.setPageTransformer(true, new ZoomOutTransformation());
 
 
@@ -94,30 +92,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void firstFragment(List<Fragment> myFragments) {
         fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment,myFragments.get(HOME_POSITION));
-        fragmentTransaction.commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment, myFragments.get(HOME_POSITION)).commit();
         temp = myFragments.get(HOME_POSITION);
-        Log.d(TAG, "firstFragment: "+myFragments.get(2));
     }
 
     private void switchFragment(Fragment fragment) {
-        if(temp!=fragment){
-            if(!fragment.isAdded()){
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.hide(temp);
-                fragmentTransaction.add(R.id.fragment,fragment);
-                fragmentTransaction.commit();
-            }else {
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.hide(temp);
-                fragmentTransaction.show(fragment);
-                fragmentTransaction.commit();
+        if (temp != fragment) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if (!fragment.isAdded()) {
+                fragmentTransaction
+                        .hide(temp)
+                        .add(R.id.fragment, fragment)
+                        .commit();
+
+            } else {
+                fragmentTransaction
+                        .hide(temp)
+                        .show(fragment)
+                        .commit();
             }
-            temp=fragment;
+            temp = fragment;
         }
 
     }

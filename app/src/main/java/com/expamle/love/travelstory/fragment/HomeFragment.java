@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
     @Nullable
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setView() {
-        activity = (AppCompatActivity) getActivity();
+        activity = (AppCompatActivity) getContext();
         toolbar = view.findViewById(R.id.home_toolbar);
         scrollView = view.findViewById(R.id.home_backdrop_scroll);
         linearLayout = view.findViewById(R.id.home_backdrop_position);
@@ -106,7 +107,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        homeReadFireBase.getAdapter().startListening();
     }
 
 
@@ -128,13 +129,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        homeReadFireBase.getAdapter().startListening();
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        homeReadFireBase.getAdapter().stopListening();
     }
 
 
