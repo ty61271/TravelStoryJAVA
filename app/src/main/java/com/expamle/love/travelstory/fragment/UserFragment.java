@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
 public class UserFragment extends Fragment {
 
     private static final int RC_SIGN_IN = 100;
+    private static final String TAG = UserFragment.class.getSimpleName();
     private Button googleLogin;
     private Button suggestion;
     private FirebaseAuth auth;
@@ -148,31 +156,50 @@ public class UserFragment extends Fragment {
 
         @Override
         public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//            判斷是否有登入，並且開啟登入UI
             user=firebaseAuth.getCurrentUser();
             if (user == null) {
                 startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
                                 .setAvailableProviders(Arrays.asList(
                                         new AuthUI.IdpConfig.GoogleBuilder().build()
+
                                 ))
                                 .setIsSmartLockEnabled(false)
                                 .build(),
                         RC_SIGN_IN);
-            } else {
-
             }
-            if (user == null) {
-                googleLogin.setVisibility(View.VISIBLE);
-                facebookLogin.setVisibility(View.VISIBLE);
-                signOut.setVisibility(View.GONE);
-            } else {
+//           判斷是否有登入
+            if (user != null) {
                 googleLogin.setVisibility(View.GONE);
                 facebookLogin.setVisibility(View.GONE);
                 signOut.setVisibility(View.VISIBLE);
+                FirebaseDatabase.getInstance().getReference("travel")
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshots) {
+                                for(DataSnapshot dataSnapshot:dataSnapshots.getChildren()){
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                FirebaseDatabase.getInstance().getReference("users")
+                        .child(user.getUid())
+                        .child("taiwan")
+                        .child("0")
+                        .child("myFavorite")
+                        .setValue(false);
+            } else {
+                googleLogin.setVisibility(View.VISIBLE);
+                facebookLogin.setVisibility(View.VISIBLE);
+                signOut.setVisibility(View.GONE);
             }
-
         }
-
     }
-
 }
 
